@@ -1,0 +1,175 @@
+/* ===== Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: #fdfdfd;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* ===== Layout general ===== */
+.container {
+  display: flex;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  overflow: hidden;
+  max-width: 900px;
+  width: 100%;
+}
+
+/* Columna izquierda */
+.left {
+  flex: 1;
+  background: linear-gradient(to bottom, #f7fafc, #eaf6fc);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.mascota {
+  max-width: 260px;
+  margin-bottom: 15px;
+}
+
+.mensaje {
+  font-size: 16px;
+  font-weight: 500;
+  color: #f97316;
+}
+
+/* Columna derecha */
+.right {
+  flex: 1;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Marca */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 120px;
+  height: auto; /* auto para que no se deforme */
+}
+
+
+
+h1 {
+  font-family: "Baloo 2", cursive;
+  font-size: 28px;
+  font-weight: 800;
+  color: #f97316;
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+input {
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+input:focus {
+  border-color: #f97316;
+  box-shadow: 0 0 0 2px rgba(0,115,208,0.15);
+  outline: none;
+}
+
+/* Botón */
+.btn {
+  background: #f97316;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s ease;
+}
+
+.btn:hover {
+  background: #f97316;
+}
+
+/* Meta */
+.meta {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 12px;
+}
+
+.meta a {
+  color: #f97316;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.meta a:hover {
+  text-decoration: underline;
+}
+
+/* Mensajes */
+.error {
+  background: #ffe2e2;
+  color: #a40000;
+  padding: 8px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.success {
+  background: #e6f9ec;
+  color: #007a2e;
+  padding: 8px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  .left, .right {
+    width: 100%;
+    padding: 20px;
+  }
+  .mascota {
+    max-width: 180px;
+  }
+}

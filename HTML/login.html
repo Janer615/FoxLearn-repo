@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login - FoxLearn</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../CSS/login.css">
+</head>
+<body>
+  <div class="container">
+
+    <!-- Columna izquierda con la imagen -->
+    <div class="left">
+      <img src="../IMG/mascota.png" alt="Mascota FoxLearn" class="mascota">
+      <p class="mensaje">¡Vamos! inicia sesión y aprende algo nuevo hoy.</p>
+    </div>
+
+    <!-- Columna derecha con el formulario -->
+    <div class="right">
+      <div class="brand">
+        <img src="../IMG/logo.png" alt="Logo FoxLearn" class="logo">
+       
+      </div>
+
+      <form id="loginForm" onsubmit="return false;">
+        <label for="user">Usuario</label>
+        <input id="user" type="text" placeholder="ej. tu@correo.com" autocomplete="username">
+
+        <label for="pass">Contraseña</label>
+        <input id="pass" type="password" placeholder="••••••••" autocomplete="current-password">
+
+        <button id="loginBtn" class="btn">Iniciar sesión</button>
+        <p class="meta">¿No tienes cuenta? <a href="#">Regístrate</a></p>
+        <div id="msg"></div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const loginBtn = document.getElementById('loginBtn');
+    const user = document.getElementById('user');
+    const pass = document.getElementById('pass');
+    const msg = document.getElementById('msg');
+
+    loginBtn.addEventListener('click', () => {
+      if(user.value === "janer" && pass.value === "1234"){
+        msg.innerHTML = "<div class='success'>¡Bienvenido "+user.value+"!</div>";
+      } else {
+        msg.innerHTML = "<div class='error'>Usuario o contraseña incorrecta</div>";
+      }
+    });
+  </script>
+</body>
+</html>

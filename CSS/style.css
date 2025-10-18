@@ -1,0 +1,95 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Baloo 2", sans-serif;
+}
+
+body {
+  background: #fff;
+  color: #3c3c3c;
+  text-align: center;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+}
+
+.logo img {
+  height: 65px;
+}
+
+.seleccionar-idioma {
+  font-size: 14px;
+  color: #666;
+  font-family: "Baloo 2", sans-serif;
+}
+
+.seleccionar-idioma select {
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* Título */
+main h1 {
+  margin: 40px 0 20px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #4b4b4b;
+}
+
+/* Grid de tarjetas */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 10px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  align-items: center;
+}
+
+/* Tarjeta */
+.card {
+  border: 2px solid #e5e5e5;
+  border-radius: 15px;
+  background: #fff;
+  padding: 30px 20px;
+  text-decoration: none;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: 0.2s ease-in-out;
+}
+
+.card:hover {
+  border-color: #ccc;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+}
+
+/* Icono */
+.card img {
+  width: 80px;
+  margin-bottom: 30px;
+}
+
+/* Texto */
+.card h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #4b4b4b;
+}
+.card p {
+  font-size: 14px;
+  color: #000000;
+}
