@@ -20,7 +20,7 @@ $sql = "INSERT INTO usuarios (usuario, contrasena) VALUES ('$usuario', '$contras
 
 if ($conn->query($sql) === TRUE) {
   // 🔥 Redirección después del registro
-  header("Location: /HTML/registro.html");
+  header("Location: /FoxLearn-repo/HTML/registro.html");
   exit();
 } else {
   echo "Error: " . $conn->error;
