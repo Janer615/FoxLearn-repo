@@ -1,0 +1,224 @@
+/* ===== Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Baloo 2", sans-serif;
+  }
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: "Baloo 2", sans-serif;
+    background: #ffffff;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* ===== Header fijo ===== */
+  header {
+    width: 100%;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #fff;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+    border-bottom: 0px solid transparent;
+  }
+  header.scrolled {
+    border-bottom: 2px solid #ddd;
+  }
+  
+  /* ===== Logo ===== */
+  .logo img {
+    height: 65px;
+  }
+  
+  /* ===== Idioma ===== */
+  .seleccionar-idioma {
+    font-size: 14px;
+    color: #666;
+  }
+  .seleccionar-idioma select {
+    padding: 6px 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+  
+  /* ===== Sección estilo duolingo ===== */
+  .feature {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 120px auto; /* margen grande porque el header es fijo */
+    padding: 0 40px;
+  }
+  .feature.invertida {
+    flex-direction: row-reverse;
+  }
+  .feature-texto {
+    flex: 1;
+  }
+  .feature-texto h2 {
+    font-size: 55px;
+    color: #F97316;
+    font-weight: 900;
+    margin-bottom: 20px;
+  }
+  .feature-texto p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+  }
+  .feature-texto a {
+    color: #1e90ff;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  .feature-texto a:hover {
+    text-decoration: underline;
+  }
+  .feature-img {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  .feature-img img {
+    max-width: 70%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+  }
+  
+  /* ===== Efecto hover imágenes (clickeables, excepto logo) ===== */
+  .feature-img img,
+  .img-final img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .feature-img img:hover,
+  .img-final img:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  }
+  
+  /* ===== Sección final ===== */
+  .final {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px 20px;
+  }
+  .final-texto h1 {
+    font-size: 70px;
+    font-weight: bold;
+    color: #F97316;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    max-width: 700px;
+  }
+  .final-texto .Registro-btn {
+    margin: 40px auto 0 auto;
+    display: block;
+    width: 250px;
+    text-align: center;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    background: linear-gradient(#F97316, #F97316);
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transition: all 0.2s ease-in-out;
+  }
+  .final-texto .Registro-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  }
+  
+  /* ===== Imagen final ===== */
+  .img-final {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .img-final img {
+    max-width: 800px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  /* ===== Footer ===== */
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    color: #777;
+    border-top: 1px solid #eee;
+  }
+  
+  /* ===== Responsive ===== */
+  @media (max-width: 1024px) {
+    .feature-texto h2 {
+      font-size: 40px;
+    }
+  }
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      gap: 10px;
+      text-align: center;
+    }
+    .feature {
+      flex-direction: column;
+      text-align: center;
+      gap: 30px;
+      margin: 100px auto;
+    }
+    .feature.invertida {
+      flex-direction: column;
+    }
+    .feature-texto h2 {
+      font-size: 28px;
+    }
+    .feature-img img {
+      max-width: 450px;
+    }
+    .final-texto h1 {
+      font-size: 40px;
+    }
+  }
+  @media (max-width: 480px) {
+    .feature-texto h2 {
+      font-size: 22px;
+    }
+    .feature-img img {
+      max-width: 320px;
+    }
+    .final-texto h1 {
+      font-size: 28px;
+    }
+  }
+  .feature-img img,
+  .img-final img {
+    border-radius: 50%; /* 🔥 asegura que siempre sea circular */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  
