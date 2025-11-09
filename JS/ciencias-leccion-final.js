@@ -1,0 +1,59 @@
+const questions = [
+    { text:"¿Cuál de estos es un mamífero?", options:["Perro","Salmón","Gallo","Lagartija"], correct:0 },
+    { text:"¿Qué usamos para respirar?", options:["Manos","Ojos","Nariz","Pies"], correct:2 },
+    { text:"¿Qué es reciclaje?", options:["Tirar basura","Reusar materiales","Quemar cosas","Comprar más"], correct:1 },
+    { text:"¿Qué necesitan las plantas para crecer?", options:["Luz del sol","Fuego","Arena","Hielo"], correct:0 },
+    { text:"¿Qué órgano bombea la sangre?", options:["Pulmón","Estómago","Corazón","Hígado"], correct:2 }
+  ];
+  
+let currentQuestion = 0;
+let selectedAnswer = null;
+const questionText = document.getElementById("question-text");
+const optionsContainer = document.getElementById("options");
+const feedback = document.getElementById("feedback");
+const continueBtn = document.getElementById("continue-btn");
+const progress = document.getElementById("progress");
+
+function loadQuestion() {
+  const q = questions[currentQuestion];
+  questionText.textContent = q.text;
+  optionsContainer.innerHTML = "";
+  feedback.textContent = "";
+  continueBtn.disabled = true;
+  continueBtn.classList.remove("enabled");
+  selectedAnswer = null;
+  q.options.forEach((opt,i)=>{ 
+    const btn = document.createElement("button"); 
+    btn.classList.add("option-btn"); 
+    btn.textContent = opt; 
+    btn.onclick=()=>selectOption(i); 
+    optionsContainer.appendChild(btn);
+  });
+  progress.style.width = `${(currentQuestion/questions.length)*100}%`;
+}
+
+function selectOption(i){
+  selectedAnswer=i;
+  const buttons=document.querySelectorAll(".option-btn");
+  buttons.forEach(btn=>{btn.style.borderColor="#ddd";btn.style.background="#fff";});
+  if(i===questions[currentQuestion].correct){
+    feedback.style.color="#22c55e"; feedback.textContent="¡Correcto!";
+    buttons[i].style.borderColor="#22c55e"; buttons[i].style.background="#dcfce7";
+    continueBtn.disabled=false; continueBtn.classList.add("enabled");
+  } else {
+    feedback.style.color="#dc2626"; 
+    feedback.textContent=`Incorrecto. La respuesta era: "${questions[currentQuestion].options[questions[currentQuestion].correct]}"`;
+    buttons[i].style.borderColor="#dc2626"; buttons[i].style.background="#fee2e2";
+    setTimeout(nextQuestion,2000);
+  }
+}
+
+continueBtn.addEventListener("click",()=>{if(selectedAnswer!==null){nextQuestion();}});
+
+function nextQuestion(){
+  currentQuestion++;
+  if(currentQuestion<questions.length){loadQuestion();}
+  else{questionText.textContent="🎉 ¡Has terminado la lección final de Ciencias Naturales!";optionsContainer.innerHTML="";feedback.textContent="";continueBtn.style.display="none";progress.style.width="100%";}
+}
+
+loadQuestion();
