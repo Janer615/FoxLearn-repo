@@ -1,11 +1,11 @@
 const questions = [
-    { text:"¿Cuál de estos es un mamífero?", options:["Perro","Salmón","Gallo","Lagartija"], correct:0 },
-    { text:"¿Qué usamos para respirar?", options:["Manos","Ojos","Nariz","Pies"], correct:2 },
-    { text:"¿Qué es reciclaje?", options:["Tirar basura","Reusar materiales","Quemar cosas","Comprar más"], correct:1 },
-    { text:"¿Qué necesitan las plantas para crecer?", options:["Luz del sol","Fuego","Arena","Hielo"], correct:0 },
-    { text:"¿Qué órgano bombea la sangre?", options:["Pulmón","Estómago","Corazón","Hígado"], correct:2 }
-  ];
-  
+  { text:"¿Cuál de estos es un mamífero?", options:["Perro","Salmón","Gallo","Lagartija"], correct:0 },
+  { text:"¿Qué usamos para respirar?", options:["Manos","Ojos","Nariz","Pies"], correct:2 },
+  { text:"¿Qué es reciclaje?", options:["Tirar basura","Reusar materiales","Quemar cosas","Comprar más"], correct:1 },
+  { text:"¿Qué necesitan las plantas para crecer?", options:["Luz del sol","Fuego","Arena","Hielo"], correct:0 },
+  { text:"¿Qué órgano bombea la sangre?", options:["Pulmón","Estómago","Corazón","Hígado"], correct:2 }
+];
+
 let currentQuestion = 0;
 let selectedAnswer = null;
 const questionText = document.getElementById("question-text");
@@ -52,8 +52,26 @@ continueBtn.addEventListener("click",()=>{if(selectedAnswer!==null){nextQuestion
 
 function nextQuestion(){
   currentQuestion++;
-  if(currentQuestion<questions.length){loadQuestion();}
-  else{questionText.textContent="🎉 ¡Has terminado la lección final de Ciencias Naturales!";optionsContainer.innerHTML="";feedback.textContent="";continueBtn.style.display="none";progress.style.width="100%";}
+  if(currentQuestion<questions.length){
+    loadQuestion();
+  } else {
+    questionText.textContent="🎉 ¡Has terminado la lección final de Ciencias Naturales!";
+    optionsContainer.innerHTML="";
+    feedback.textContent="";
+    continueBtn.style.display="none";
+    progress.style.width="100%";
+
+    // 🔥 Guardar progreso en la BD
+    fetch("../PHP/guardar_progreso_cie.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: "nivel=ciencias_naturales_final"
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data); // aquí puedes mostrar un mensaje o hacer algo con la respuesta
+    });
+  }
 }
 
 loadQuestion();

@@ -1,3 +1,6 @@
+<?php include("../PHP/auth.php"); ?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

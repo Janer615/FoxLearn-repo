@@ -1,3 +1,5 @@
+<?php include("../PHP/auth.php"); ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -32,6 +34,6 @@
     <button id="continue-btn" disabled>CONTINUAR</button>
   </div>
 
-  <script src="../JS/ciencias-leccion2.js"></script>
+  <script src="../JS/math-leccion1.js"></script>
 </body>
 </html>

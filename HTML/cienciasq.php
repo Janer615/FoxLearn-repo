@@ -1,3 +1,6 @@
+<?php include("../PHP/auth.php"); ?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -33,7 +36,7 @@
             </p>
         </div>
         <div class="feature-img">
-            <a href="ciencias-leccion1.html">
+            <a href="ciencias-leccion1.php">
                 <img src="../IMG/botón.png" alt="Foxy mostrando progreso">
             </a>
         </div>
@@ -48,7 +51,7 @@
             </p>
         </div>
         <div class="feature-img">
-            <a href="ciencias-leccion2.html">
+            <a href="ciencias-leccion2.php">
                 <img src="../IMG/botón.png" alt="Ilustración 2">
             </a>
         </div>
@@ -63,7 +66,7 @@
             </p>
         </div>
         <div class="feature-img">
-            <a href="ciencias-leccion3.html">
+            <a href="ciencias-leccion3.php">
                 <img src="../IMG/botón.png" alt="Ilustración 3">
             </a>
         </div>
@@ -76,7 +79,7 @@
     </section>
 
     <section class="img-final">
-        <a href="ciencias-leccion-final.html">
+        <a href="ciencias-leccion-final.php">
             <img src="../IMG/botón.png" alt="FoxMan">
         </a>
     </section>
@@ -86,6 +89,6 @@
     </footer>
 
     <!-- Enlazar el JS -->
-    <script src="../JS/ciencias-script.js"></script>
+    <script src="../JS/traduccion_cie.js"></script>
 </body>
 </html>

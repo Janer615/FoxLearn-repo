@@ -38,18 +38,32 @@
   </div>
 
   <script>
-    const loginBtn = document.getElementById('loginBtn');
-    const user = document.getElementById('user');
-    const pass = document.getElementById('pass');
-    const msg = document.getElementById('msg');
+  const loginBtn = document.getElementById('loginBtn');
+  const user = document.getElementById('user');
+  const pass = document.getElementById('pass');
+  const msg = document.getElementById('msg');
 
-    loginBtn.addEventListener('click', () => {
-      if(user.value === "janer" && pass.value === "1234"){
-        msg.innerHTML = "<div class='success'>¡Bienvenido "+user.value+"!</div>";
-      } else {
-        msg.innerHTML = "<div class='error'>Usuario o contraseña incorrecta</div>";
-      }
+  loginBtn.addEventListener('click', async () => {
+    const datos = new FormData();
+    datos.append("correo", user.value);
+    datos.append("contrasena", pass.value);
+
+    const respuesta = await fetch("../PHP/login.php", {
+      method: "POST",
+      body: datos
     });
-  </script>
+
+    const resultado = await respuesta.json();
+
+    if (resultado.status === "success") {
+      msg.innerHTML = `<div class='success'>¡Bienvenido!</div>`;
+      // Redirigir a página protegida
+      window.location.href = "dashboard.php";
+    } else {
+      msg.innerHTML = `<div class='error'>${resultado.msg}</div>`;
+    }
+  });
+</script>
+
 </body>
 </html>

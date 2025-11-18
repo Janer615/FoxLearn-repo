@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login - FoxLearn</title>
+  <title>Registro - FoxLearn</title>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../CSS/login.css">
 </head>
@@ -23,12 +23,12 @@
       </div>
 
       <!-- FORMULARIO para registro -->
-      <form id="loginForm" action="../PHP/registro.php" method="POST">
-        <label for="user">Usuario</label>
-        <input id="user" name="usuario" type="text" placeholder="ej. tu@correo.com" autocomplete="username" required>
+      <form id="registroForm" action="../PHP/registro.php" method="POST">
+        <label for="correo">Correo electrónico</label>
+        <input id="correo" name="correo" type="email" placeholder="ej. tu@correo.com" autocomplete="username" required>
 
-        <label for="pass">Contraseña</label>
-        <input id="pass" name="contrasena" type="password" placeholder="••••••••" autocomplete="current-password" required>
+        <label for="contrasena">Contraseña</label>
+        <input id="contrasena" name="contrasena" type="password" placeholder="••••••••" autocomplete="current-password" required>
 
         <button type="submit" class="btn">Registrarse</button>
         <p class="meta">¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>

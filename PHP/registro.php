@@ -1,9 +1,9 @@
 <?php
 // Conexión a la base de datos
 $servername = "localhost";
-$username = "root"; // tu usuario MySQL
-$password = "";     // tu contraseña MySQL
-$dbname = "foxlearn_db";
+$username   = "root"; // tu usuario MySQL
+$password   = "";     // tu contraseña MySQL
+$dbname     = "db_foxi";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -12,16 +12,20 @@ if ($conn->connect_error) {
 }
 
 // Recibir datos del formulario
-$usuario = $_POST['usuario'];
-$contrasena = password_hash($_POST['contrasena'], PASSWORD_BCRYPT);
+$correo = $_POST['correo'];
+$contrasena = $_POST['contrasena'];
 
+// Encriptar contraseña
+$hash = password_hash($contrasena, PASSWORD_BCRYPT);
 
 // Insertar en la BD
-$sql = "INSERT INTO usuarios (usuario, contrasena) VALUES ('$usuario', '$contrasena')";
+$sql  = "INSERT INTO usuarios (correo, contrasena) VALUES (?, ?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("ss", $correo, $hash);
 
-if ($conn->query($sql) === TRUE) {
+if ($stmt->execute()) {
   // 🔥 Redirección después del registro
-  header("Location: /FoxLearn-repo/HTML/registro.html");
+  header("Location: /FoxLearn-repo/HTML/login.html");
   exit();
 } else {
   echo "Error: " . $conn->error;
@@ -29,4 +33,3 @@ if ($conn->query($sql) === TRUE) {
 
 $conn->close();
 ?>
-

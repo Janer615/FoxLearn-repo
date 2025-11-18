@@ -1,34 +1,10 @@
 const questions = [
-  {
-    text: "Traduce al inglés: 'Mesa'",
-    options: ["Table", "Chair", "Door", "Window"],
-    correct: 0
-  },
-  {
-    text: "¿Cómo se dice 'ventana' en inglés?",
-    options: ["Door", "Window", "Wall", "Ceiling"],
-    correct: 1
-  },
-  {
-    text: "¿Qué significa 'chair'?",
-    options: ["Mesa", "Silla", "Cama", "Lámpara"],
-    correct: 1
-  },
-  {
-    text: "Traduce: 'puerta'",
-    options: ["Floor", "Door", "Window", "Roof"],
-    correct: 1
-  },
-  {
-    text: "¿Cómo se dice 'lámpara'?",
-    options: ["Lamp", "Book", "Pen", "Desk"],
-    correct: 0
-  },
-  {
-    text: "¿Qué significa 'floor'?",
-    options: ["Techo", "Piso", "Pared", "Ventana"],
-    correct: 1
-  }
+  { text: "Traduce al inglés: 'Mesa'", options: ["Table", "Chair", "Door", "Window"], correct: 0 },
+  { text: "¿Cómo se dice 'ventana' en inglés?", options: ["Door", "Window", "Wall", "Ceiling"], correct: 1 },
+  { text: "¿Qué significa 'chair'?", options: ["Mesa", "Silla", "Cama", "Lámpara"], correct: 1 },
+  { text: "Traduce: 'puerta'", options: ["Floor", "Door", "Window", "Roof"], correct: 1 },
+  { text: "¿Cómo se dice 'lámpara'?", options: ["Lamp", "Book", "Pen", "Desk"], correct: 0 },
+  { text: "¿Qué significa 'floor'?", options: ["Techo", "Piso", "Pared", "Ventana"], correct: 1 }
 ];
 
 let currentQuestion = 0;
@@ -53,47 +29,59 @@ function loadQuestion() {
     const btn = document.createElement("button");
     btn.classList.add("option-btn");
     btn.textContent = opt;
-    btn.onclick = () => selectOption(i);
+    btn.onclick = () => selectOption(i, opt); // pasamos también el texto
     optionsContainer.appendChild(btn);
   });
 
   progress.style.width = `${(currentQuestion / questions.length) * 100}%`;
 }
 
-function selectOption(i) {
-  const q = questions[currentQuestion];
+function selectOption(i, word) {
   selectedAnswer = i;
+
+  // 🔊 Pronunciar la palabra seleccionada
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-US"; 
+  speechSynthesis.speak(utterance);
+
+  // Marcar visualmente la opción seleccionada con naranja
   const buttons = document.querySelectorAll(".option-btn");
+  buttons.forEach(btn => { btn.style.borderColor = "#ddd"; btn.style.background = "#fff"; });
+  buttons[i].style.borderColor = "#F97316";   // naranja bonito
+  buttons[i].style.background = "#ffffff";    // fondo blanco/naranja suave
 
-  buttons.forEach((btn) => {
-    btn.style.borderColor = "#ddd";
-    btn.style.background = "#fff";
-  });
-
-  if (i === q.correct) {
-    feedback.style.color = "#22c55e";
-    feedback.textContent = "¡Correcto!";
-    buttons[i].style.borderColor = "#22c55e";
-    buttons[i].style.background = "#dcfce7";
-    continueBtn.disabled = false;
-    continueBtn.classList.add("enabled");
-  } else {
-    feedback.style.color = "#dc2626";
-    feedback.textContent = `Incorrecto. La respuesta era: "${q.options[q.correct]}"`;
-    buttons[i].style.borderColor = "#dc2626";
-    buttons[i].style.background = "#fee2e2";
-
-    setTimeout(() => {
-      nextQuestion();
-    }, 2000);
-  }
+  // Habilitar botón continuar
+  continueBtn.disabled = false;
+  continueBtn.classList.add("enabled");
 }
 
 continueBtn.addEventListener("click", () => {
   if (selectedAnswer !== null) {
-    nextQuestion();
+    checkAnswer();
   }
 });
+
+function checkAnswer() {
+  const q = questions[currentQuestion];
+  const buttons = document.querySelectorAll(".option-btn");
+
+  if (selectedAnswer === q.correct) {
+    feedback.style.color = "#22c55e";
+    feedback.textContent = "¡Correcto!";
+    buttons[selectedAnswer].style.borderColor = "#22c55e";
+    buttons[selectedAnswer].style.background = "#dcfce7";
+  } else {
+    feedback.style.color = "#dc2626";
+    feedback.textContent = `Incorrecto. La respuesta era: "${q.options[q.correct]}"`;
+    buttons[selectedAnswer].style.borderColor = "#dc2626";
+    buttons[selectedAnswer].style.background = "#fee2e2";
+  }
+
+  // Pasar a la siguiente pregunta después de 2 seg
+  setTimeout(() => {
+    nextQuestion();
+  }, 2000);
+}
 
 function nextQuestion() {
   currentQuestion++;
@@ -105,6 +93,17 @@ function nextQuestion() {
     feedback.textContent = "";
     continueBtn.style.display = "none";
     progress.style.width = "100%";
+
+    // 🔥 Guardar progreso en la BD
+    fetch("../PHP/guardar_progreso_eng.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: "nivel=ingles_nivel3"
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data); // aquí puedes mostrar un mensaje o hacer algo con la respuesta
+    });
   }
 }
 

@@ -65,17 +65,29 @@ const questions1 = [
   });
   
   function nextQuestion1() {
-    currentQuestion++;
-    if (currentQuestion < questions1.length) {
-      loadQuestion1();
-    } else {
-      questionText.textContent = "🎉 ¡Has terminado la lección de Español nivel 1!";
-      optionsContainer.innerHTML = "";
-      feedback.textContent = "";
-      continueBtn.style.display = "none";
-      progress.style.width = "100%";
-    }
+  currentQuestion++;
+  if (currentQuestion < questions1.length) {
+    loadQuestion1();
+  } else {
+    questionText.textContent = "🎉 ¡Has terminado la lección de Español nivel 1!";
+    optionsContainer.innerHTML = "";
+    feedback.textContent = "";
+    continueBtn.style.display = "none";
+    progress.style.width = "100%";
+
+    //Guardar progreso en la BD
+    fetch("../PHP/guardar_progreso_esp.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: "nivel=espanol_nivel1"
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+    });
   }
+}
+
   
   loadQuestion1();
   
